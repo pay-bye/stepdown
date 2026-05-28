@@ -1,0 +1,40 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Coverage tool output
+*.out
+coverage.txt
+coverage.html
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Vendor (uncomment if vendoring is adopted)
+# vendor/
+
+# Environment
+.env
+.envrc
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+/bin/
+/dist/
