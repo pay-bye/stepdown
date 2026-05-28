@@ -11,10 +11,14 @@ A structural Go-language source analyzer that enforces top-down readability thro
 ## Usage
 
 ```
-go run github.com/pay-bye/stepdown/cmd/stepdown@<version> ./...
+go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...
 ```
 
-Where `<version>` is a published git tag (e.g., `v0.1.0`).
+Before `v0.1.0` is tagged locally, run the working tree command:
+
+```
+go run ./cmd/stepdown ./...
+```
 
 Exit codes:
 
@@ -59,7 +63,15 @@ The ADR is canonical for the tool's behavior. This README is a summary.
 
 ## Status
 
-`stepdown` is at the specification stage. ADR-0001 is Accepted as of 2026-05-28. v0.1.0 implementation work follows.
+`stepdown` v0.1.0 implements ADR-0001. The implementation uses positive witness fixtures only and runs against its own source before release.
+
+## Verification
+
+```
+./scripts/verify.sh
+```
+
+The verification script checks Go 1.26.3 with `GOTOOLCHAIN=local`, runs `go test ./...`, runs the command against every positive witness fixture package, and runs `stepdown` against its own non-test, non-generated, default-build source.
 
 ## License
 
