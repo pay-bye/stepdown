@@ -1,29 +1,23 @@
 package alpha
 
-type ID string
-
-func NewID(value string) ID {
-	return ID(value)
+type Config struct {
+	Host string
+	Port int
 }
 
-func (i ID) String() string {
-	return string(i)
+type Settings struct {
+	Debug bool
+	Limit int
 }
 
-type Handler func(ID) string
-
-func NewHandler() Handler {
-	return func(id ID) string {
-		return id.String()
-	}
+type Service struct {
+	config Config
 }
 
-type Items []ID
-
-func NewItems(id ID) Items {
-	return Items{id}
+func NewService(config Config) Service {
+	return Service{config: config}
 }
 
-func (i Items) Count() int {
-	return len(i)
+func (s Service) Run() error {
+	return nil
 }
