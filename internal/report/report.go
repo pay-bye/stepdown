@@ -1,3 +1,4 @@
+// Package report defines diagnostics and output formatting.
 package report
 
 import (

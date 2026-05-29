@@ -1,6 +1,7 @@
 package grammar
 
 import (
+	"fmt"
 	"go/ast"
 
 	"github.com/pay-bye/stepdown/internal/report"
@@ -109,4 +110,8 @@ func methodCalls(method Declaration, methods map[string]Declaration) []string {
 		return true
 	})
 	return calls
+}
+
+func methodOrderDescription(owner string, expected string) string {
+	return fmt.Sprintf("expected non-accessor receiver method order for %s to follow DFS from %s", owner, expected)
 }

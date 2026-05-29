@@ -1,3 +1,4 @@
+// Package grammar models Go declarations and checks top-down ordering rules.
 package grammar
 
 import (

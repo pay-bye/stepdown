@@ -1,3 +1,4 @@
+// Package analyze runs source loading and grammar checks for package patterns.
 package analyze
 
 import (

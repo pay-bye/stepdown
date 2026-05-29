@@ -1,7 +1,6 @@
 package grammar
 
 import (
-	"fmt"
 	"go/token"
 
 	"github.com/pay-bye/stepdown/internal/report"
@@ -31,6 +30,7 @@ type state struct {
 	fileSection fileSection
 	typeSection typeSection
 	currentType string
+	earlyHelper token.Pos
 	diagnostics []report.Diagnostic
 }
 
@@ -84,7 +84,9 @@ func checkVar(current *state, declaration Declaration) {
 
 func startType(current *state, declaration Declaration) {
 	if current.fileSection > inTypeBlock {
-		add(current, declaration.Pos, report.SectionOrder, "expected type block before package functions")
+		if !addEarlyHelper(current, "expected helper functions after type blocks") {
+			add(current, declaration.Pos, report.SectionOrder, "expected type block before package functions")
+		}
 	}
 	current.fileSection = inTypeBlock
 	current.typeSection = beforeConstructors
@@ -93,8 +95,11 @@ func startType(current *state, declaration Declaration) {
 
 func checkTypeMember(current *state, declaration Declaration) {
 	if current.fileSection != inTypeBlock {
-		add(current, declaration.Pos, report.SectionOrder, "expected receiver or constructor inside a type block")
-		return
+		addEarlyHelper(current, "expected helper functions after receiver methods")
+		if current.fileSection != inTypeBlock {
+			add(current, declaration.Pos, report.SectionOrder, "expected receiver or constructor inside a type block")
+			return
+		}
 	}
 	if declaration.Owner != current.currentType {
 		add(current, declaration.Pos, report.MultiTypeInterleave, "expected declarations for current type block before another receiver type")
@@ -126,6 +131,7 @@ func requireTypeSection(current *state, declaration Declaration, latest typeSect
 
 func checkExportedFunction(current *state, declaration Declaration) {
 	if current.fileSection == inHelpers {
+		current.earlyHelper = token.NoPos
 		add(current, declaration.Pos, report.HelperPlacement, "expected helper functions after exported package-level functions")
 		return
 	}
@@ -133,11 +139,20 @@ func checkExportedFunction(current *state, declaration Declaration) {
 }
 
 func checkHelper(current *state, declaration Declaration) {
-	if current.fileSection < inExportedFunctions {
-		current.fileSection = inHelpers
-		return
+	if current.fileSection == inTypeBlock {
+		current.earlyHelper = declaration.Pos
 	}
 	current.fileSection = inHelpers
+}
+
+func addEarlyHelper(current *state, description string) bool {
+	if !current.earlyHelper.IsValid() {
+		return false
+	}
+	add(current, current.earlyHelper, report.SectionOrder, description)
+	current.earlyHelper = token.NoPos
+	current.fileSection = inTypeBlock
+	return true
 }
 
 func add(current *state, pos token.Pos, rule string, description string) {
@@ -150,8 +165,4 @@ func diagnostic(model Model, pos token.Pos, rule string, description string) rep
 		return report.Tool(rule, description)
 	}
 	return report.At(position.Filename, position.Line, position.Column, rule, description)
-}
-
-func methodOrderDescription(owner string, expected string) string {
-	return fmt.Sprintf("expected non-accessor receiver method order for %s to follow DFS from %s", owner, expected)
 }

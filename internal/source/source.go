@@ -1,3 +1,4 @@
+// Package source loads Go packages and selects analyzable files.
 package source
 
 import (
