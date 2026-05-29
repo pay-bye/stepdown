@@ -1,0 +1,72 @@
+name: New rule proposal
+description: Propose a new rule through ADR discipline.
+title: "New rule proposal: "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: stepdown version
+    validations:
+      required: true
+  - type: input
+    id: go-version
+    attributes:
+      label: Go version
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command run
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed result
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Do not include production-system identity, secrets, customer data, or private code.
+    validations:
+      required: true
+  - type: textarea
+    id: failure-mode
+    attributes:
+      label: Structural failure mode
+    validations:
+      required: true
+  - type: textarea
+    id: existing-rules
+    attributes:
+      label: Why human review and existing rules do not catch it
+    validations:
+      required: true
+  - type: textarea
+    id: readability
+    attributes:
+      label: Why this rule traces to top-down source readability
+    validations:
+      required: true
+  - type: textarea
+    id: non-goals
+    attributes:
+      label: Why this is not semantic correctness, security, performance, API design, or domain policy
+    validations:
+      required: true
+  - type: checkboxes
+    id: adr
+    attributes:
+      label: ADR requirement
+      options:
+        - label: I understand that a new rule requires an ADR before implementation.
+          required: true

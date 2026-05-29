@@ -1,5 +1,11 @@
 # stepdown
 
+[![Verify](https://github.com/pay-bye/stepdown/actions/workflows/verify.yml/badge.svg)](https://github.com/pay-bye/stepdown/actions/workflows/verify.yml)
+[![License](https://img.shields.io/github/license/pay-bye/stepdown)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/pay-bye/stepdown)](go.mod)
+[![Go Reference](https://pkg.go.dev/badge/github.com/pay-bye/stepdown.svg)](https://pkg.go.dev/github.com/pay-bye/stepdown)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pay-bye/stepdown)](https://goreportcard.com/report/github.com/pay-bye/stepdown)
+
 A structural Go-language source analyzer that enforces top-down readability through a positive grammar over Go's abstract syntax tree.
 
 ## What it does

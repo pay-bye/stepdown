@@ -1,0 +1,47 @@
+name: Structural shape accepted
+description: Report source accepted by the tool that violates top-down readability.
+title: "Structural shape accepted: "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: stepdown version
+    validations:
+      required: true
+  - type: input
+    id: go-version
+    attributes:
+      label: Go version
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command run
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed result
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Do not include production-system identity, secrets, customer data, or private code.
+    validations:
+      required: true
+  - type: textarea
+    id: escaped-failure
+    attributes:
+      label: Top-down readability failure that escaped detection
+    validations:
+      required: true

@@ -58,7 +58,7 @@ func constructorOwner(model Model, function *ast.FuncDecl) string {
 	}
 	owner := strings.TrimPrefix(function.Name.Name, "New")
 	subject, ok := model.Types[owner]
-	if !ok || constructorReturns(model, function, subject.Type) == false {
+	if !ok || !constructorReturns(model, function, subject.Type) {
 		return ""
 	}
 	return owner
