@@ -1,3 +1,6 @@
+// Command stepdown analyzes Go packages and reports source files whose
+// declarations are not ordered top-down. See the README and ADR-0001 for
+// the full grammar.
 package main
 
 import (
