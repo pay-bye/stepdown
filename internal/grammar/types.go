@@ -5,7 +5,7 @@ import (
 	"go/token"
 	"go/types"
 
-	"github.com/pay-bye/stepdown/internal/source"
+	"stepdown.dev/go/internal/source"
 )
 
 const (

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"go/ast"
 
-	"github.com/pay-bye/stepdown/internal/report"
+	"stepdown.dev/go/internal/report"
 )
 
 func checkMethodOrder(model Model) []report.Diagnostic {

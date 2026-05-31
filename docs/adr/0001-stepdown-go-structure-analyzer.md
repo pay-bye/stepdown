@@ -3,8 +3,10 @@
 Status: Accepted
 Date: 2026-05-28
 Accepted: 2026-05-28
+Amended: 2026-05-31 — rehomed to `github.com/stepdown-dev/stepdown-go`, module path `stepdown.dev/go`, owner Stinnett Holdings LLC. Locator metadata only; no rule semantics changed.
 Decision owner: stepdown maintainer
 Initial maintainer: John Stinnett
+Owner: Stinnett Holdings LLC
 Ratified by: Founder (John Stinnett), with review by External Auditor, Founder Chief Architect, and Foundation Auditor
 
 ## Context
@@ -23,16 +25,17 @@ This ADR is canonical for `stepdown`'s tool semantics. Consumers that adopt `ste
 
 - Tool name: `stepdown`
 - Binary name: `stepdown`
-- Repository: `github.com/pay-bye/stepdown`
-- Module path: `github.com/pay-bye/stepdown`
-- Command package: `github.com/pay-bye/stepdown/cmd/stepdown`
+- Repository: `github.com/stepdown-dev/stepdown-go`
+- Module path: `stepdown.dev/go` (vanity import path; a `go-import` meta tag resolves it to the repository above)
+- Command package: `stepdown.dev/go/cmd/stepdown`
 - License: Apache 2.0
+- Owner: Stinnett Holdings LLC
 
-The `pay-bye` token in the module path and repository URL is **ownership/steward locator metadata**, not tool semantics. Repository metadata, module path, license headers, and similar steward-identifying tokens are explicitly carved out as locator metadata. The tool's **rule vocabulary, diagnostics, fixture content, error messages, configuration, and rule documentation** use only Go-language concepts and contain no Pay-bye identity. The same module-path token discipline applies as for other commodity Go tools whose module paths name their stewards (e.g., `dominikh/go-tools` for `staticcheck`, `securego/gosec` for `gosec`).
+The module path is the vanity domain `stepdown.dev/go`, owned by the steward (Stinnett Holdings LLC) and resolved to the repository by a `go-import` meta tag; it carries no steward-name token at all. The repository URL `github.com/stepdown-dev/stepdown-go` names the steward organization, which is **ownership/steward locator metadata**, not tool semantics. Repository metadata, module path, license headers, and similar steward-identifying tokens are explicitly carved out as locator metadata. The tool's **rule vocabulary, diagnostics, fixture content, error messages, configuration, and rule documentation** use only Go-language concepts and contain no steward or consumer identity. The same locator-metadata discipline applies as for other commodity Go tools whose module paths name their stewards (e.g., `dominikh/go-tools` for `staticcheck`, `securego/gosec` for `gosec`).
 
 ### Maintainer ownership
 
-The initial maintainer is John Stinnett. Maintainer succession is recorded by an amendment to this ADR (changing this section) or by a successor ADR. An orphan maintainer is a recognized failure mode (see Failure Modes); the maintainer's responsibility is to either continue the work or arrange succession before stepping away.
+The initial maintainer is John Stinnett; the tool is owned by Stinnett Holdings LLC. Maintainer succession is recorded by an amendment to this ADR (changing this section) or by a successor ADR. An orphan maintainer is a recognized failure mode (see Failure Modes); the maintainer's responsibility is to either continue the work or arrange succession before stepping away.
 
 ### Public-facing motivation
 
@@ -527,7 +530,7 @@ Exit code 1 versus exit code 2 distinguishes "the source has structural problems
 
 ### Pinning mechanism
 
-`stepdown` supports exactly one pinning mechanism: `go run github.com/pay-bye/stepdown/cmd/stepdown@<version> ./...` where `<version>` is a published git tag (`v0.1.0`, `v0.2.0`, etc.) following Go module versioning conventions.
+`stepdown` supports exactly one pinning mechanism: `go run stepdown.dev/go/cmd/stepdown@<version> ./...` where `<version>` is a published git tag (`v0.1.1`, `v0.2.0`, etc.) following Go module versioning conventions. Versions `v0.1.0` and earlier were published under the predecessor module path and do not resolve at `stepdown.dev/go`; `v0.1.1` is the first version published at the vanity path.
 
 Other distribution forms (vendored binary, container image, package-managed install) and a stable `stepdown --version` command are **deferred to a future ADR**; `stepdown` does not provide an installed-binary version check because it does not provide an installed binary. Consumers that need binary distribution build from source.
 

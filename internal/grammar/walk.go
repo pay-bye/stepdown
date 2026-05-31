@@ -3,7 +3,7 @@ package grammar
 import (
 	"go/token"
 
-	"github.com/pay-bye/stepdown/internal/report"
+	"stepdown.dev/go/internal/report"
 )
 
 const (

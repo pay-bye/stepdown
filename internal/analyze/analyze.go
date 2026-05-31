@@ -4,9 +4,9 @@ package analyze
 import (
 	"context"
 
-	"github.com/pay-bye/stepdown/internal/grammar"
-	"github.com/pay-bye/stepdown/internal/report"
-	"github.com/pay-bye/stepdown/internal/source"
+	"stepdown.dev/go/internal/grammar"
+	"stepdown.dev/go/internal/report"
+	"stepdown.dev/go/internal/source"
 )
 
 type Result struct {

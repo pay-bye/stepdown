@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pay-bye/stepdown/internal/report"
+	"stepdown.dev/go/internal/report"
 )
 
 func TestReportsParseFailure(t *testing.T) {

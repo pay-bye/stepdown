@@ -1,10 +1,10 @@
 # stepdown
 
-[![Verify](https://github.com/pay-bye/stepdown/actions/workflows/verify.yml/badge.svg)](https://github.com/pay-bye/stepdown/actions/workflows/verify.yml)
-[![License](https://img.shields.io/github/license/pay-bye/stepdown)](LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/pay-bye/stepdown)](go.mod)
-[![Go Reference](https://pkg.go.dev/badge/github.com/pay-bye/stepdown.svg)](https://pkg.go.dev/github.com/pay-bye/stepdown)
-[![Go Report Card](https://goreportcard.com/badge/github.com/pay-bye/stepdown)](https://goreportcard.com/report/github.com/pay-bye/stepdown)
+[![Verify](https://github.com/stepdown-dev/stepdown-go/actions/workflows/verify.yml/badge.svg)](https://github.com/stepdown-dev/stepdown-go/actions/workflows/verify.yml)
+[![License](https://img.shields.io/github/license/stepdown-dev/stepdown-go)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/stepdown-dev/stepdown-go)](go.mod)
+[![Go Reference](https://pkg.go.dev/badge/stepdown.dev/go.svg)](https://pkg.go.dev/stepdown.dev/go)
+[![Go Report Card](https://goreportcard.com/badge/stepdown.dev/go)](https://goreportcard.com/report/stepdown.dev/go)
 
 **A Go linter that keeps source files readable top to bottom.**
 
@@ -51,7 +51,7 @@ Read it straight down: the type, then how you build it, then what it does, with 
 ## Usage
 
 ```
-go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...
+go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...
 ```
 
 Drop that into a CI step, or run it from a clone with `go run ./cmd/stepdown ./...`. It takes Go package patterns and analyzes the non-test, non-generated files in the default build.
@@ -95,7 +95,7 @@ Sections are optional — an empty file with just a package clause passes. Type 
 
 `stepdown` checks one thing: declaration order. It does not check correctness, security, performance, or API design — `go vet`, `staticcheck`, `gosec`, and `govulncheck` already do those, and `stepdown` runs happily alongside them.
 
-It has no configuration file, no rule toggles, and no per-line ignore comments. The order is the order. If a piece of valid Go consistently can't satisfy it, that's a bug in the grammar — [open an issue](https://github.com/pay-bye/stepdown/issues), don't reach for a waiver.
+It has no configuration file, no rule toggles, and no per-line ignore comments. The order is the order. If a piece of valid Go consistently can't satisfy it, that's a bug in the grammar — [open an issue](https://github.com/stepdown-dev/stepdown-go/issues), don't reach for a waiver.
 
 ## Documentation
 

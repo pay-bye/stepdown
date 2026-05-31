@@ -22,7 +22,7 @@ Affected readers are maintainers, contributors, security reporters, and release 
 
 ## Assumptions
 
-- The repository remains `github.com/pay-bye/stepdown`; that token is steward locator metadata, not tool semantics.
+- The repository is `github.com/stepdown-dev/stepdown-go` and the module path is the vanity `stepdown.dev/go`; the steward-org token is locator metadata, not tool semantics.
 - `go.mod` declares `go 1.26.3`.
 - The maintainer GitHub handle for ownership routing is `@johnastinnett`.
 - Private security disclosure uses GitHub Private Security Advisories.
@@ -139,15 +139,15 @@ Usage:
 
 Examples:
   stepdown ./...
-  go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...
+  go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...
 
 Exit codes:
   0  no findings, or help printed
   1  source structure findings
   2  usage, load, parse, type-resolution, or output error
 
-ADR: https://github.com/pay-bye/stepdown/blob/main/docs/adr/0001-stepdown-go-structure-analyzer.md
-README: https://github.com/pay-bye/stepdown#readme
+ADR: https://github.com/stepdown-dev/stepdown-go/blob/main/docs/adr/0001-stepdown-go-structure-analyzer.md
+README: https://github.com/stepdown-dev/stepdown-go#readme
 ```
 
 ### `scripts/verify.sh`
@@ -359,11 +359,11 @@ Add badges at the top of `README.md`, below the H1 and before descriptive prose.
 Required badge set:
 
 ```markdown
-[![Verify](https://github.com/pay-bye/stepdown/actions/workflows/verify.yml/badge.svg)](https://github.com/pay-bye/stepdown/actions/workflows/verify.yml)
-[![License](https://img.shields.io/github/license/pay-bye/stepdown)](LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/pay-bye/stepdown)](go.mod)
-[![Go Reference](https://pkg.go.dev/badge/github.com/pay-bye/stepdown.svg)](https://pkg.go.dev/github.com/pay-bye/stepdown)
-[![Go Report Card](https://goreportcard.com/badge/github.com/pay-bye/stepdown)](https://goreportcard.com/report/github.com/pay-bye/stepdown)
+[![Verify](https://github.com/stepdown-dev/stepdown-go/actions/workflows/verify.yml/badge.svg)](https://github.com/stepdown-dev/stepdown-go/actions/workflows/verify.yml)
+[![License](https://img.shields.io/github/license/stepdown-dev/stepdown-go)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/stepdown-dev/stepdown-go)](go.mod)
+[![Go Reference](https://pkg.go.dev/badge/stepdown.dev/go.svg)](https://pkg.go.dev/stepdown.dev/go)
+[![Go Report Card](https://goreportcard.com/badge/stepdown.dev/go)](https://goreportcard.com/report/stepdown.dev/go)
 ```
 
 The badges prove only that README links to the intended status surfaces. External indexing and successful hosted runs remain out of scope.
@@ -461,7 +461,7 @@ Reviewer inspection:
 Foundation Auditor inspection:
 
 - Lift the repository to a neutral Go project and verify that tool semantics remain Go-language semantics.
-- Confirm `pay-bye` appears only in steward locator metadata such as module path, badge URLs, and repository URLs.
+- Confirm steward identity (`stepdown-dev`, Stinnett Holdings LLC) appears only in locator metadata such as repository and badge URLs, never in tool semantics; the vanity module path `stepdown.dev/go` carries no steward token.
 - Confirm no policy file claims external GitHub settings were changed.
 - Confirm supplied contact values are grounded by the principal decision artifact, not inferred.
 

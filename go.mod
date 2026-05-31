@@ -1,4 +1,4 @@
-module github.com/pay-bye/stepdown
+module stepdown.dev/go
 
 go 1.26.3
 

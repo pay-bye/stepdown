@@ -9,8 +9,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/pay-bye/stepdown/internal/analyze"
-	"github.com/pay-bye/stepdown/internal/report"
+	"stepdown.dev/go/internal/analyze"
+	"stepdown.dev/go/internal/report"
 )
 
 const helpText = `stepdown - Go source structure analyzer for top-down declaration order
@@ -23,15 +23,15 @@ Usage:
 
 Examples:
   stepdown ./...
-  go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...
+  go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...
 
 Exit codes:
   0  no findings, or help printed
   1  source structure findings
   2  usage, load, parse, type-resolution, or output error
 
-ADR: https://github.com/pay-bye/stepdown/blob/main/docs/adr/0001-stepdown-go-structure-analyzer.md
-README: https://github.com/pay-bye/stepdown#readme
+ADR: https://github.com/stepdown-dev/stepdown-go/blob/main/docs/adr/0001-stepdown-go-structure-analyzer.md
+README: https://github.com/stepdown-dev/stepdown-go#readme
 `
 
 func main() {

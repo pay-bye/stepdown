@@ -4,6 +4,15 @@ All notable changes to this project are documented in this file.
 
 This project follows Semantic Versioning.
 
+## [v0.1.1] - 2026-05-31
+
+Rehomed. No functional or grammar changes.
+
+### Changed
+
+- Repository moved to `github.com/stepdown-dev/stepdown-go`; the module path is now the vanity import path `stepdown.dev/go`, resolved by a `go-import` meta tag. Pin with `go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...`.
+- Owner is Stinnett Holdings LLC. `v0.1.0` and earlier remain available under the predecessor module path but do not resolve at `stepdown.dev/go`.
+
 ## [v0.1.0] - 2026-05-28
 
 Initial release. `stepdown` enforces top-down declaration order in Go source files through a positive grammar, specified by [ADR-0001](docs/adr/0001-stepdown-go-structure-analyzer.md).
@@ -21,4 +30,5 @@ Initial release. `stepdown` enforces top-down declaration order in Go source fil
 - Self-policing: `stepdown` runs against its own source as part of verification.
 - Apache 2.0 license.
 
-[v0.1.0]: https://github.com/pay-bye/stepdown/releases/tag/v0.1.0
+[v0.1.1]: https://github.com/stepdown-dev/stepdown-go/releases/tag/v0.1.1
+[v0.1.0]: https://github.com/stepdown-dev/stepdown-go/releases/tag/v0.1.0

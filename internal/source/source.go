@@ -13,7 +13,7 @@ import (
 
 	"golang.org/x/tools/go/packages"
 
-	"github.com/pay-bye/stepdown/internal/report"
+	"stepdown.dev/go/internal/report"
 )
 
 var generatedMarker = regexp.MustCompile(`^// Code generated .* DO NOT EDIT\.$`)

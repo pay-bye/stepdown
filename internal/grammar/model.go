@@ -7,7 +7,7 @@ import (
 	"go/types"
 	"strings"
 
-	"github.com/pay-bye/stepdown/internal/source"
+	"stepdown.dev/go/internal/source"
 )
 
 func Build(file source.File) Model {

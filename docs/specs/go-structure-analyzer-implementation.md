@@ -15,7 +15,7 @@ This spec is an implementation translation. ADR-0001 remains canonical for tool 
 
 ## Success Criteria
 
-- `stepdown` v0.1.0 builds as module `github.com/pay-bye/stepdown` with command package `github.com/pay-bye/stepdown/cmd/stepdown` and Apache 2.0 license posture preserved.
+- `stepdown` v0.1.0 builds as module `stepdown.dev/go` with command package `stepdown.dev/go/cmd/stepdown` and Apache 2.0 license posture preserved.
 - The analyzer walks Go source against the accepted positive grammar from ADR-0001 and emits diagnostics when declarations do not match the next valid grammar position.
 - Analyzer source contains no rejected-shape catalog, denied-pattern list, forbidden-shape registry, bad-shape enum, or equivalent source structure.
 - Analyzer source does not switch on named bad shapes or violation types such as `ConstructorBeforeType`, `GetterAfterMethod`, `MultiTypeInterleaved`, or equivalent names.
@@ -32,7 +32,7 @@ This spec is an implementation translation. ADR-0001 remains canonical for tool 
 
 - The accepted ADR's Go grammar is complete enough for v0.1.0 implementation.
 - The first implementation uses Go packages available through the standard Go toolchain plus `golang.org/x/tools/go/packages`.
-- The command accepts explicit package patterns. `go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...` is the release invocation model.
+- The command accepts explicit package patterns. `go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...` is the release invocation model.
 - A zero-argument command is a tool usage error and exits `2`; ADR-0001 documents explicit package-pattern usage and does not authorize an implicit default.
 - The self-policing gate can run only after the command builds and can analyze its own source without relying on an already released tag.
 
@@ -47,7 +47,7 @@ In scope:
 Out of scope:
 
 - Consumer-side Agent OS adoption records.
-- Pay-bye verification-gate integration.
+- Consumer verification-gate integration.
 - Vendored binary distribution.
 - Container images.
 - Package-manager installation.
@@ -55,7 +55,7 @@ Out of scope:
 - Waiver mechanisms.
 - Rule configuration.
 - Semantic correctness, security, performance, API-design, or domain-policy linting.
-- Any Pay-bye-specific diagnostic, fixture, rule, package, or runtime vocabulary inside `stepdown`.
+- Any consumer-specific diagnostic, fixture, rule, package, or runtime vocabulary inside `stepdown`.
 - Product/runtime customer-data surfaces.
 
 ## ADR Requirement Map
@@ -65,7 +65,7 @@ This map translates each load-bearing ADR-0001 requirement into implementation r
 | ADR requirement | Implementation requirement | Verification or review gate |
 |---|---|---|
 | Tool name and binary are `stepdown`. | Command builds under `cmd/stepdown`; usage examples call `stepdown`. | `go test ./...`; command smoke from repository root. |
-| Repository and module path are `github.com/pay-bye/stepdown`; command package is `github.com/pay-bye/stepdown/cmd/stepdown`; license is Apache 2.0. | Preserve `go.mod`, `LICENSE`, README, and command package path. `pay-bye` remains locator metadata only. | File review; no tool rule, fixture, diagnostic, or config uses steward identity as semantics. |
+| Repository is `github.com/stepdown-dev/stepdown-go`; module path is the vanity `stepdown.dev/go`; command package is `stepdown.dev/go/cmd/stepdown`; license is Apache 2.0. | Preserve `go.mod`, `LICENSE`, README, and command package path. The steward-org token remains locator metadata only. | File review; no tool rule, fixture, diagnostic, or config uses steward identity as semantics. |
 | Ownership/steward locator metadata is not tool semantics. | Module path and license headers may name steward. Rule vocabulary, diagnostics, fixtures, error messages, configuration, and docs use Go-language concepts only. | Vocabulary sweep in Reviewer and Foundation Auditor gates. |
 | Public motivation is top-down readability for human review of Go source. | README and command help describe structural Go source order, not consumer-specific policy. | README/help review. |
 | Strict non-goals exclude semantic correctness, security, performance, API design, waivers, and configuration. | No rules, flags, config files, or docs introduce those scopes. | Source and docs review. |
@@ -92,7 +92,7 @@ This map translates each load-bearing ADR-0001 requirement into implementation r
 | Sparse fixture-driven tests. | One harness discovers fixture directories and asserts zero diagnostics. No per-case expected diagnostic table. Internal tests only cover tool/load error plumbing. | Test review. |
 | Diagnostic format and rule names. | Emit `file:line:column: <rule-name>: <description>` using stable ADR rule-name constants. | Diagnostic formatting test; command run. |
 | Exit codes. | `0` clean, `1` findings, `2` tool/load error. | CLI tests. |
-| Pinning mechanism. | README documents `go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...`; no installed-binary version command in v0.1.0. | README review. |
+| Pinning mechanism. | README documents `go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...`; no installed-binary version command in v0.1.0. | README review. |
 | Evolution, removal, deprecation, and maintainer risk. | README/CONTRIBUTING preserve ADR-driven new-rule process, no waivers, no configuration creep, and maintainer succession posture. | Docs review. |
 
 ## Positive Grammar Walker Requirement
@@ -122,7 +122,7 @@ The repository must not contain:
 - analyzer source structures that enumerate bad shapes;
 - docs that teach contributors to add rejected examples as proof.
 
-The fixture harness discovers `testdata/<case>/input.go` directories mechanically and asserts zero diagnostics. Fixture directory names describe valid grammar coverage, not invalid examples. Fixture file content uses generic Go identifiers such as `Foo`, `Bar`, `Baz`, `Widget`, `Subject`, `Config`, and `Service`; it contains no production-system identity, business-domain vocabulary, consumer-specific references, Pay-bye vocabulary, Agent OS vocabulary, workflow vocabulary, payroll vocabulary, foundation vocabulary, watchlist vocabulary, or predecessor-story vocabulary.
+The fixture harness discovers `testdata/<case>/input.go` directories mechanically and asserts zero diagnostics. Fixture directory names describe valid grammar coverage, not invalid examples. Fixture file content uses generic Go identifiers such as `Foo`, `Bar`, `Baz`, `Widget`, `Subject`, `Config`, and `Service`; it contains no production-system identity, business-domain vocabulary, consumer-specific references, or any steward, consumer, or product vocabulary.
 
 Internal tests may cover tool/load error plumbing for `parse-failure`, `type-resolution-failure`, and `package-load-failure` when those conditions cannot be exercised through positive fixtures. Those tests remain focused on error plumbing and must not become structural rejected-form examples.
 
@@ -409,7 +409,7 @@ Foundation Auditor inspection:
 - lift witness for module path, rule names, fixture names, diagnostics, docs, and integration tokens;
 - confirmation that steward identity remains locator metadata;
 - confirmation that the source does not become a rejected-form container;
-- confirmation that no Pay-bye, Agent OS, workflow, foundation, watchlist, payroll, or product vocabulary appears in tool semantics, fixtures, diagnostics, config, or tests.
+- confirmation that no steward, consumer, or product vocabulary appears in tool semantics, fixtures, diagnostics, config, or tests.
 
 ## Positive Witness Fixtures
 
@@ -460,7 +460,7 @@ Founder Chief Architect closeout:
 Release shape:
 
 - v0.1.0 implementation completes only after all implementation units pass review and audit.
-- Public usage remains `go run github.com/pay-bye/stepdown/cmd/stepdown@v0.1.0 ./...`.
+- Public usage remains `go run stepdown.dev/go/cmd/stepdown@v0.1.1 ./...`.
 - Consumer adoption is separate and requires consumer-side records.
 
 Recovery:
