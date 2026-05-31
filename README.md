@@ -112,3 +112,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the development setup, the verificati
 ## License
 
 [Apache License 2.0](LICENSE).
+
+## Family
+
+`stepdown` is the Go member of the [stepdown family](https://github.com/stepdown-dev) of structural source analyzers — all sharing one [constitution](https://github.com/stepdown-dev/.github/blob/main/PRINCIPLES.md) (positive grammar, no configuration, no waivers, self-policing). A TypeScript sibling, `stepdown-ts`, is in development.
